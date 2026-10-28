@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Duncan's Arcade</title>
+<meta name="description" content="Duncan's Arcade: a kid-safe family arcade.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1f4a3c"><link rel="icon" href="icon-192.png"><link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Duncan's Arcade"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+/* Black Watch tartan: exact palette from Duncan's Mess Up Fess Up Flight kilt (base #1f4a3c, navy rgba(20,28,60,.85/.6), black overcheck) */
+.tartan{background-color:#1f4a3c;background-image:repeating-linear-gradient(90deg,rgba(20,28,60,.85) 0 18px,transparent 18px 26px,rgba(0,0,0,.55) 26px 30.5px,transparent 30.5px 40px),repeating-linear-gradient(0deg,rgba(20,28,60,.6) 0 18px,transparent 18px 26px,rgba(0,0,0,.45) 26px 30.5px,transparent 30.5px 40px)}
+body{color:#1b130c;font-family:"Trebuchet MS",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;
+ padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+header{text-align:center;padding:14px 12px 14px;border-bottom:6px solid #f2c14e;box-shadow:0 4px 0 #120a06;background:#7d776c url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='48'%3E%3Crect width='96' height='48' fill='%23595349'/%3E%3Cg stroke='%23463f36' stroke-width='1'%3E%3Crect x='1.5' y='1.5' width='44' height='21' rx='3' fill='%23a29c90'/%3E%3Crect x='49.5' y='1.5' width='45' height='21' rx='3' fill='%23948e82'/%3E%3Crect x='-22.5' y='25.5' width='44' height='21' rx='3' fill='%238c867a'/%3E%3Crect x='25.5' y='25.5' width='44' height='21' rx='3' fill='%23a8a296'/%3E%3Crect x='73.5' y='25.5' width='44' height='21' rx='3' fill='%238c867a'/%3E%3C/g%3E%3C/svg%3E");background-size:96px 48px}
+.banner{position:relative;max-width:620px;margin:0 auto 10px;padding:0 34px}
+.banner h1{position:relative;z-index:1;background:linear-gradient(#256b3d,#174a2b);border-top:4px solid #d8b75e;border-bottom:4px solid #d8b75e;box-shadow:0 0 0 2px #120a06,0 6px 10px rgba(0,0,0,.45);padding:8px 10px 10px;text-align:center}
+.banner:before,.banner:after{content:'';position:absolute;top:14px;bottom:-8px;width:52px;background:#123d23;border-top:3px solid #d8b75e;border-bottom:3px solid #d8b75e;z-index:0}
+.banner:before{left:0;clip-path:polygon(0 0,100% 0,100% 100%,0 100%,28% 50%)}.banner:after{right:0;clip-path:polygon(0 0,100% 0,72% 50%,100% 100%,0 100%)}
+.hero{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;max-width:760px;margin:0 auto}
+.avw{position:relative;flex:none}
+.av{display:block;width:104px;height:104px;border-radius:50%;object-fit:cover;border:5px solid #f2c14e;box-shadow:0 0 0 3px #120a06,0 6px 14px rgba(0,0,0,.5);background:#f6e3b4;flex:none}
+.logo{position:absolute;right:-14px;bottom:-6px;width:50px;height:50px;filter:drop-shadow(0 3px 0 rgba(0,0,0,.45));background:#fff8e6;border-radius:50%;border:3px solid #f2c14e;padding:4px}
+h1{margin:0;font-family:"Arial Black","Trebuchet MS",system-ui,sans-serif;font-weight:900;font-size:clamp(22px,7vw,46px);line-height:1;letter-spacing:1px;color:#f6ecd0;text-shadow:0 3px 0 #0b2615,1px 1px 0 #0b2615,-1px -1px 0 #0b2615}
+h1 span{color:#ffd84a}
+.sub{display:inline-block;margin:0;padding:6px 16px;border-radius:20px;background:#fff8e6;color:#1f4a3c;font-weight:bold;font-size:18px;border:3px solid #120a06}
+main{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;padding:18px 14px 90px;max-width:1100px;margin:0 auto}
+.tile{display:flex;flex-direction:column;min-height:140px;background:#fff8e6;border:4px solid #120a06;border-radius:20px;overflow:hidden;text-decoration:none;color:#1b130c;box-shadow:0 6px 0 #120a06;transition:transform .08s;-webkit-touch-callout:none}
+.tile:active{transform:translateY(4px);box-shadow:0 2px 0 #120a06}
+.tile img{display:block;width:100%;height:auto;aspect-ratio:720/378;object-fit:cover;background:#1f4a3c;border-bottom:4px solid #f2c14e;-webkit-user-drag:none;pointer-events:none}
+.tile b{display:flex;align-items:center;justify-content:center;text-align:center;flex:1;padding:8px 8px 10px;font-size:17px;line-height:1.15;color:#1f4a3c}
+.door{position:relative;flex:none;width:96px;height:122px;border:4px solid #120a06;border-radius:48px 48px 6px 6px;background:repeating-linear-gradient(90deg,#6b3f1f 0 15px,#4a2a12 15px 17px,#7a4a26 17px 31px,#4a2a12 31px 33px);box-shadow:inset 0 0 12px rgba(0,0,0,.6)}
+.door i{position:absolute;left:-4px;right:-4px;height:12px;background:linear-gradient(#5a5f66,#2a2d31);border:2px solid #120a06;background-image:radial-gradient(circle,#c9ced4 2px,transparent 2.5px),linear-gradient(#5a5f66,#2a2d31);background-size:18px 12px,auto}
+.door i:nth-child(1){top:30px}.door i:nth-child(2){bottom:20px}
+.door b{position:absolute;left:50%;top:58px;width:22px;height:30px;margin-left:-11px;border-radius:50%;background:radial-gradient(circle at 50% 35%,#120a06 4px,transparent 4.5px),linear-gradient(#e2c15a,#9c7a1e);border:2px solid #120a06}
+.door b:after{content:'';position:absolute;left:8px;top:12px;width:3px;height:10px;background:#120a06}
+.empty{grid-column:1/-1;text-align:center;background:#fff8e6;border:4px solid #120a06;border-radius:20px;padding:20px;font-weight:bold}
+/* parent lock: small, long-press 2 s */
+#lockBtn{position:fixed;right:calc(12px + env(safe-area-inset-right));bottom:calc(12px + env(safe-area-inset-bottom));width:46px;height:46px;border-radius:50%;border:3px solid #f2c14e;background:#120a06;opacity:.75;display:flex;align-items:center;justify-content:center;touch-action:none;z-index:5;padding:0;cursor:pointer}
+#lockBtn svg.ring{position:absolute;inset:-6px;width:58px;height:58px;transform:rotate(-90deg);pointer-events:none}
+#lockBtn .ring circle{fill:none;stroke:#ffd84a;stroke-width:5;stroke-dasharray:163;stroke-dashoffset:163}
+#lockBtn.hold .ring circle{transition:stroke-dashoffset 2s linear;stroke-dashoffset:0}
+#holdTip{position:fixed;right:68px;bottom:calc(20px + env(safe-area-inset-bottom));background:#120a06;color:#ffd84a;font-size:16px;padding:5px 10px;border-radius:12px;display:none;z-index:5}
+/* overlays */
+.ov{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:max(12px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom));background:rgba(10,14,20,.78)}
+.ov.on{display:flex}
+.pad{width:min(340px,100%);border-radius:24px;border:5px solid #f2c14e;box-shadow:0 0 0 4px #120a06;padding:14px 16px 16px;text-align:center;color:#fff;position:relative}
+.pad h2{margin:2px 0 6px;font-size:20px;color:#ffd84a;text-shadow:0 2px 0 #120a06}
+.pad .pl{width:46px;height:46px;background:#fff8e6;border-radius:50%;border:3px solid #f2c14e;padding:3px;margin:0 auto}
+.dots{display:flex;justify-content:center;gap:12px;margin:8px 0 6px}
+.dots i{width:18px;height:18px;border-radius:50%;border:3px solid #ffd84a;background:transparent}
+.dots i.f{background:#ffd84a}
+#pinMsg{min-height:22px;font-weight:bold;font-size:16px;background:rgba(0,0,0,.45);border-radius:10px;padding:2px 6px;margin-bottom:8px}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+/* chanter-style keys: ebony pipe with silver ferrule */
+.key{position:relative;height:58px;border-radius:14px;border:3px solid #120a06;background:linear-gradient(90deg,#24160e,#5a3a26 45%,#24160e);color:#fff8e6;font:bold 24px "Trebuchet MS",system-ui,sans-serif;cursor:pointer;box-shadow:0 4px 0 #120a06;touch-action:manipulation;padding-top:8px}
+.key:before{content:"";position:absolute;left:-3px;right:-3px;top:-3px;height:12px;border-radius:12px 12px 4px 4px;background:linear-gradient(90deg,#9aa3ad,#f4f6f9 45%,#9aa3ad);border:3px solid #120a06}
+.key:active{transform:translateY(3px);box-shadow:0 1px 0 #120a06}
+.key:disabled{opacity:.4}
+.key.ok{background:linear-gradient(90deg,#14532d,#22a06b 45%,#14532d)}.key.clr{background:linear-gradient(90deg,#5c0f0f,#c0392b 45%,#5c0f0f);font-size:16px}
+.x{position:absolute;right:6px;top:4px;width:44px;height:44px;border-radius:50%;border:3px solid #120a06;background:#fff8e6;font:bold 20px system-ui;cursor:pointer;color:#120a06}
+/* parent panel */
+#parent{align-items:stretch}
+.panel{width:min(760px,100%);max-height:100%;overflow:auto;background:#fff8e6;border:5px solid #f2c14e;box-shadow:0 0 0 4px #120a06;border-radius:20px;-webkit-user-select:text;user-select:text}
+.ph{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:10px;padding:10px 12px;color:#fff;border-bottom:4px solid #f2c14e}
+.ph h2{margin:0;flex:1;font-size:19px;color:#ffd84a;text-shadow:0 2px 0 #120a06}
+.ph small{display:block;color:#fff;font-size:16px;font-weight:normal;text-shadow:0 1px 0 #000}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;padding:10px 12px 0}
+.tab{min-height:44px;padding:0 12px;border-radius:14px;border:3px solid #120a06;background:#fff;font:bold 16px "Trebuchet MS",system-ui,sans-serif;cursor:pointer;color:#1f4a3c}
+.tab.on{background:#1f4a3c;color:#ffd84a}
+.sec{display:none;padding:10px 14px 18px;line-height:1.4;font-size:16px}.sec.on{display:block}
+.sec h3{margin:12px 0 6px;color:#1f4a3c;font-size:17px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 14px;border-radius:14px;border:3px solid #120a06;background:#1f4a3c;color:#fff;font:bold 16px "Trebuchet MS",system-ui,sans-serif;text-decoration:none;cursor:pointer;touch-action:manipulation}
+.btn.gold{background:#f2c14e;color:#120a06}.btn.red{background:#c0392b}.btn.sm{min-height:44px;min-width:44px;padding:0 8px}
+.grow{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:2px dashed #d9c9a0;flex-wrap:wrap}
+.grow img{width:44px;height:44px;object-fit:cover;object-position:22% 50%;border-radius:10px;border:2px solid #120a06;background:#1f4a3c;flex:none}
+.grow .nm{flex:1 1 140px;font-weight:bold;min-width:0}
+.grow.off .nm{opacity:.45;text-decoration:line-through}#gList .grow{flex-wrap:nowrap}#gList .grow .nm{flex:1 1 0}
+.dev{display:flex;gap:6px;margin:6px 0}
+.steps{background:#fff;border:3px solid #120a06;border-radius:14px;padding:8px 12px;margin:6px 0}
+.steps ol{margin:4px 0;padding-left:22px}.steps li{margin:4px 0}
+.ico{display:inline-flex;vertical-align:middle;width:26px;height:26px;border:2px solid #1f4a3c;border-radius:6px;align-items:center;justify-content:center;background:#eef4ff;margin:0 2px}
+.note{background:#fff3cd;border:3px solid #c99a06;border-radius:12px;padding:8px 12px;margin:8px 0}
+.warn{background:#fde2e1;border:3px solid #c0392b;border-radius:12px;padding:8px 12px;margin:8px 0}
+label.sw{display:flex;align-items:center;gap:10px;font-weight:bold;min-height:44px}
+input[type=checkbox]{width:28px;height:28px}input[type=range]{width:200px;height:44px;vertical-align:middle}
+#gList input[type=checkbox]{width:44px;height:44px;margin:0;flex:none;cursor:pointer}
+.sec small,.steps small{font-size:16px}
+@media (max-width:420px){.banner{padding:0 26px}.banner:before,.banner:after{width:40px}.av{width:88px;height:88px}.sub{font-size:16px}}
+@media (max-height:500px) and (orientation:landscape){header{padding:8px 12px;display:flex;align-items:center;justify-content:center;gap:16px}.banner{margin:0;flex:0 1 520px}.av{width:66px;height:66px}.logo{width:36px;height:36px;right:-10px}h1{font-size:28px}.sub{font-size:16px;padding:3px 12px}.key{height:44px;font-size:20px}.pad{padding:8px 12px}.pad .pl{display:none}.dots{margin:4px 0}.keys{gap:6px}.pad h2{font-size:17px}}
+@media (max-height:420px) and (orientation:landscape){.pad{width:min(560px,100%);display:grid;grid-template-columns:1fr 1.3fr;gap:10px;align-items:center}.pad>.top{grid-column:1}.keys{grid-column:2}}
+</style></head><body class="tartan">
+<header>
+ <div class="banner"><h1>DUNCAN'S <span>ARCADE</span></h1></div>
+ <div class="hero"><div class="avw"><img class="av" id="av" src="img/duncan.jpg" width="104" height="104" alt="Duncan"><div class="logo" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="bwt1" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#1f4a3c"/><rect width="4.5" height="10" fill="rgba(20,28,60,.85)"/><rect width="10" height="4.5" fill="rgba(20,28,60,.6)"/><rect x="6.5" width="1.1" height="10" fill="rgba(0,0,0,.55)"/><rect y="6.5" width="10" height="1.1" fill="rgba(0,0,0,.45)"/></pattern></defs><g stroke="#120a06" stroke-width="1.6" stroke-linejoin="round"><g transform="rotate(-28 46 44)"><rect x="43" y="6" width="6" height="40" rx="2" fill="#3a2418"/><rect x="41" y="2" width="10" height="6" rx="2" fill="#e8ecf2"/><rect x="42" y="24" width="8" height="4" rx="1.5" fill="#e8ecf2"/></g><g transform="rotate(-12 54 42)"><rect x="51" y="10" width="6" height="34" rx="2" fill="#3a2418"/><rect x="49" y="6" width="10" height="6" rx="2" fill="#e8ecf2"/><rect x="50" y="25" width="8" height="4" rx="1.5" fill="#e8ecf2"/></g><g transform="rotate(4 62 42)"><rect x="59" y="14" width="6" height="30" rx="2" fill="#3a2418"/><rect x="57" y="10" width="10" height="6" rx="2" fill="#e8ecf2"/><rect x="58" y="27" width="8" height="4" rx="1.5" fill="#e8ecf2"/></g><path d="M22 50 C 20 34, 46 30, 66 40 C 82 48, 80 72, 60 76 C 42 80, 24 68, 22 50 Z" fill="url(#bwt1)"/><path d="M30 46 C 40 40, 56 40, 70 48" fill="none" stroke="#f2c14e" stroke-width="2.4"/><g transform="rotate(-50 26 46)"><rect x="23" y="20" width="5" height="26" rx="2" fill="#3a2418"/><rect x="22" y="17" width="7" height="5" rx="2" fill="#e8ecf2"/></g><g transform="rotate(18 34 74)"><rect x="31" y="68" width="6" height="28" rx="2" fill="#3a2418"/><rect x="29.5" y="92" width="9" height="6" rx="2" fill="#e8ecf2"/><circle cx="34" cy="77" r="1.1" fill="#f2c14e" stroke="none"/><circle cx="34" cy="82" r="1.1" fill="#f2c14e" stroke="none"/><circle cx="34" cy="87" r="1.1" fill="#f2c14e" stroke="none"/></g></g><path d="M57 70 l6 18 l-4 -2 l-3 4 z M64 69 l8 15 l-4 -1 l-2 4 z" fill="#d62828" stroke="#120a06" stroke-width="1"/></svg></div></div><p class="sub" id="sub">Tap a game to play! 🎮</p></div>
+</header>
+<main id="grid" aria-label="Games"></main>
+<button id="lockBtn" type="button" aria-label="Grown-ups: press and hold for 2 seconds"><svg class="ring" viewBox="0 0 58 58"><circle cx="29" cy="29" r="26"/></svg><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="12" rx="3" fill="#f2c14e"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="#f2c14e" stroke-width="2.6"/><circle cx="12" cy="16" r="1.8" fill="#120a06"/></svg></button>
+<div id="holdTip">Grown-ups: keep holding…</div>
+
+<div class="ov" id="pinOv" role="dialog" aria-modal="true" aria-label="Grown-up PIN">
+ <div class="pad tartan"><button class="x" id="pinX" type="button" aria-label="Close">✕</button>
+  <div class="top"><div class="pl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="bwt2" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#1f4a3c"/><rect width="4.5" height="10" fill="rgba(20,28,60,.85)"/><rect width="10" height="4.5" fill="rgba(20,28,60,.6)"/><rect x="6.5" width="1.1" height="10" fill="rgba(0,0,0,.55)"/><rect y="6.5" width="10" height="1.1" fill="rgba(0,0,0,.45)"/></pattern></defs><g stroke="#120a06" stroke-width="1.6" stroke-linejoin="round"><g transform="rotate(-28 46 44)"><rect x="43" y="6" width="6" height="40" rx="2" fill="#3a2418"/><rect x="41" y="2" width="10" height="6" rx="2" fill="#e8ecf2"/><rect x="42" y="24" width="8" height="4" rx="1.5" fill="#e8ecf2"/></g><g transform="rotate(-12 54 42)"><rect x="51" y="10" width="6" height="34" rx="2" fill="#3a2418"/><rect x="49" y="6" width="10" height="6" rx="2" fill="#e8ecf2"/><rect x="50" y="25" width="8" height="4" rx="1.5" fill="#e8ecf2"/></g><g transform="rotate(4 62 42)"><rect x="59" y="14" width="6" height="30" rx="2" fill="#3a2418"/><rect x="57" y="10" width="10" height="6" rx="2" fill="#e8ecf2"/><rect x="58" y="27" width="8" height="4" rx="1.5" fill="#e8ecf2"/></g><path d="M22 50 C 20 34, 46 30, 66 40 C 82 48, 80 72, 60 76 C 42 80, 24 68, 22 50 Z" fill="url(#bwt2)"/><path d="M30 46 C 40 40, 56 40, 70 48" fill="none" stroke="#f2c14e" stroke-width="2.4"/><g transform="rotate(-50 26 46)"><rect x="23" y="20" width="5" height="26" rx="2" fill="#3a2418"/><rect x="22" y="17" width="7" height="5" rx="2" fill="#e8ecf2"/></g><g transform="rotate(18 34 74)"><rect x="31" y="68" width="6" height="28" rx="2" fill="#3a2418"/><rect x="29.5" y="92" width="9" height="6" rx="2" fill="#e8ecf2"/><circle cx="34" cy="77" r="1.1" fill="#f2c14e" stroke="none"/><circle cx="34" cy="82" r="1.1" fill="#f2c14e" stroke="none"/><circle cx="34" cy="87" r="1.1" fill="#f2c14e" stroke="none"/></g></g><path d="M57 70 l6 18 l-4 -2 l-3 4 z M64 69 l8 15 l-4 -1 l-2 4 z" fill="#d62828" stroke="#120a06" stroke-width="1"/></svg></div><h2 id="pinTitle">Grown-ups only</h2><div class="dots" id="dots"></div><div id="pinMsg" role="status" aria-live="polite">Enter the parent PIN</div></div>
+  <div class="keys" id="keys"></div>
+ </div>
+</div>
+
+<div class="ov" id="parent" role="dialog" aria-modal="true" aria-label="Parent settings">
+ <div class="panel">
+  <div class="ph tartan"><h2>🔓 Parent mode<small id="idle">Locks again after 2 minutes idle</small></h2><button class="btn gold" id="relock" type="button">🔒 Lock now</button></div>
+  <div class="tabs"><button class="tab on" data-s="sGames" type="button">🎮 Games</button><button class="tab" data-s="sHome" type="button">📲 Home Screen</button><button class="tab" data-s="sSound" type="button">🎵 Sound</button><button class="tab" data-s="sHelp" type="button">🛡️ Phone safety</button></div>
+  <section class="sec on" id="sGames"><p>Untick a game to hide it from Duncan. Use ▲▼ to change the order. Changes save on this device.</p><div id="gList"></div><p><button class="btn red" id="reset" type="button">↺ Show all &amp; reset order</button></p></section>
+  <section class="sec" id="sHome">
+   <h3>1. Put Duncan's Arcade on the Home Screen</h3>
+   <p><button class="btn gold" id="instArc" type="button" style="display:none">📲 Install Duncan's Arcade</button> <span id="instDone" style="display:none">✅ The arcade is already installed and running from its icon.</span></p>
+   <h3>2. Put each game on the Home Screen as its own tile</h3>
+   <div class="note">Phones only let a game be added <b>from that game's own page</b>, one at a time. A web page can't add icons for you. Tap <b>Open game</b>, then follow the steps for your phone, then come back here for the next one.</div>
+   <div class="dev"><button class="tab" data-d="ios" type="button">iPhone / iPad</button><button class="tab" data-d="and" type="button">Android</button></div>
+   <div class="steps" id="stIos"><b>iPhone / iPad (use Safari):</b><ol>
+    <li>Tap <b>Open game</b> below. The game opens in Safari.</li>
+    <li>Tap the <b>Share</b> button <span class="ico" aria-label="Share icon"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M8 1v10M4 5l4-4 4 4" fill="none" stroke="#1f6fd1" stroke-width="2"/><path d="M3 8H1v9h14V8h-2" fill="none" stroke="#1f6fd1" stroke-width="2"/></svg></span> (the square with an arrow; on iPhone it's at the bottom of the screen or behind the ••• button).</li>
+    <li>Scroll down and tap <b>Add to Home Screen</b> <span class="ico" aria-label="Add icon"><svg width="16" height="16" viewBox="0 0 16 16"><rect x="1" y="1" width="14" height="14" rx="3" fill="none" stroke="#1f6fd1" stroke-width="2"/><path d="M8 4v8M4 8h8" stroke="#1f6fd1" stroke-width="2"/></svg></span>. Make sure <b>Open as Web App</b> is on if you see it.</li>
+    <li>Tap <b>Add</b>. The game's own picture shows up as a tile on the Home Screen.</li></ol>
+    <small>If you're inside the installed arcade and there's no Share button, tap <b>Copy link</b>, paste it into Safari, then do the steps above.</small></div>
+   <div class="steps" id="stAnd"><b>Android (use Chrome):</b><ol>
+    <li>Tap <b>Open game</b> below. The game opens in Chrome.</li>
+    <li>If an <b>Install</b> bar or icon pops up, tap it, then tap <b>Install</b>.</li>
+    <li>If not, tap the menu <span class="ico" aria-label="Menu">⋮</span> at the top right, then <b>Add to Home screen</b> (or <b>Install app</b>), then <b>Install</b> or <b>Add</b>.</li>
+    <li>The game's tile appears on the Home Screen (you may need to drag it from the app list).</li></ol></div>
+   <div id="hList"></div>
+  </section>
+  <section class="sec" id="sSound"><label class="sw"><input type="checkbox" id="sndOn"> Play a short bagpipe "skirl" when the arcade opens</label><p>Volume <input type="range" id="sndVol" min="0.02" max="0.5" step="0.02"> <button class="btn sm" id="sndTest" type="button">▶ Test</button></p><p><small>Off by default and kept quiet. Phones only allow sound after the first tap, so it plays on Duncan's first tap. Each game has its own mute button.</small></p></section>
+  <section class="sec" id="sHelp">
+   <div class="warn"><b>Important:</b> this lock only protects the arcade page itself (hiding, reordering, sound, install help). <b>A web page can't stop a phone's own "Remove App"/"Delete" on Home Screen icons, or block the phone's Settings.</b> To stop that, use the phone's built-in parental controls below.</div>
+   <h3>iPhone / iPad</h3>
+   <div class="steps"><b>Stop apps from being deleted (Screen Time):</b><ol><li>Settings → <b>Screen Time</b> (set a Screen Time passcode Duncan doesn't know).</li><li><b>Content &amp; Privacy Restrictions</b> → turn it on.</li><li><b>iTunes &amp; App Store Purchases</b> → <b>Deleting Apps</b> → <b>Don't Allow</b>.</li></ol><small>On a child's device managed with Family Sharing on iOS 27, the same switch is under Apps &amp; Websites → Restrictions (set Deleting Apps to Blocked). Apple doesn't say whether this also covers web-app icons added from Safari, so test it by pressing and holding an icon. Guided Access below is the sure lock.</small></div>
+   <div class="steps"><b>Lock the phone to one app (Guided Access):</b><ol><li>Settings → <b>Accessibility</b> → <b>Guided Access</b> → turn on, and set a passcode in Passcode Settings.</li><li>Open Duncan's Arcade (or a game), then triple-click the side button (Home button on older phones) → <b>Start</b>.</li><li>Triple-click and enter the passcode to end it.</li></ol></div>
+   <h3>Android</h3>
+   <div class="steps"><b>Lock the phone to one app (App pinning):</b><ol><li>Settings → <b>Security</b> (or Security &amp; location) → Advanced → <b>App pinning</b> → turn on. (The menu name can vary by phone maker.)</li><li>Open the arcade, go to Overview (swipe up and hold), tap the app's icon at the top → <b>Pin</b>.</li><li>Unpinning asks for the phone's PIN, pattern or password.</li></ol></div>
+   <div class="steps"><b>Google Family Link:</b> use the Family Link app to block apps, set screen time limits and require approval for Play downloads. Google's help pages don't promise that it stops Home Screen web icons from being removed, so app pinning is the sure lock.</div>
+  </section>
+ </div>
+</div>
+<script>
+// ======================= DUNCAN'S ARCADE: GAME LIST =======================
+// To ADD a game: copy one line, change id (the GitHub repo name), title and cover.
+//   url  = the FULL game link (https://ploug76.github.io/<repo>/). Never a ?sample link.
+//   cover = an image in covers/ (copy the game's 720x378 cover there).
+// To REMOVE a game for good, delete its line. To hide one just on Duncan's phone, use Parent mode → Games.
+// After editing, bump V in sw.js (e.g. v1 -> v2) so phones pick up the change.
+const B='https://ploug76.github.io/';
+const GAMES=[
+ {id:'duncans-mess-up-fess-up-flight',  title:"Duncan's Flight",                   cover:'covers/duncans-mess-up-fess-up-flight.gif'},
+ {id:'letter-traffic',                  title:"Letter Traffic",                    cover:'covers/letter-traffic.gif'},
+ {id:'kittys-chicken-corral',           title:"Kitty's Chicken Corral",            cover:'covers/kittys-chicken-corral.gif'},
+ {id:'suzys-potato-quest',              title:"Suzy's Potato Quest",               cover:'covers/suzys-potato-quest.gif'},
+ {id:'hopes-prayer-warrior',            title:"Hope's Prayer Warrior",             cover:'covers/hopes-prayer-warrior.gif'},
+ {id:'j-woos-fishing-challenge',        title:"J Woo's Fishing Challenge",         cover:'covers/j-woos-fishing-challenge.gif'},
+ {id:'jims-bible-challenge',            title:"Jim's Bible Challenge",             cover:'covers/jims-bible-challenge.gif'},
+ {id:'lunar-rover-run',                 title:"Lunar Rover Run",                   cover:'covers/lunar-rover-run.gif'},
+ {id:'block-drop',                      title:"Block Drop",                        cover:'covers/block-drop.gif'},
+ {id:'quack-attack',                    title:"Quack Attack",                      cover:'covers/quack-attack.gif'},
+ {id:'paper-route-peter',               title:"Paper Route Peter",                 cover:'covers/paper-route-peter.gif'},
+ {id:'road-agent',                      title:"Road Agent",                        cover:'covers/road-agent.gif'},
+ {id:'maze-muncher',                    title:"Maze Muncher",                      cover:'covers/maze-muncher.gif'},
+ {id:'cosmic-crash-pinball',            title:"Cosmic Crash Pinball",              cover:'covers/cosmic-crash-pinball.gif'},
+ {id:'haunted-midway-pinball',          title:"Haunted Midway Pinball",            cover:'covers/haunted-midway-pinball.gif'},
+ {id:'neon-riff-pinball',               title:"Neon Riff Pinball",                 cover:'covers/neon-riff-pinball.gif'},
+ {id:'pin-palace-bowling',              title:"Pin Palace Bowling",                cover:'covers/pin-palace-bowling.gif'},
+ {id:'lakeside-links-golf',             title:"Lakeside Links Golf",               cover:'covers/lakeside-links-golf.gif'},
+ {id:'crazy-course-mini-golf',          title:"Crazy Course Mini Golf",            cover:'covers/crazy-course-mini-golf.gif'},
+ {id:'tams-road-to-emmaus',             title:"Tam's Road to Emmaus",              cover:'covers/tams-road-to-emmaus.gif'},
+ {id:'tams-heavenly-hair-salon',        title:"Tam's Heavenly Hair Salon",         cover:'covers/tams-heavenly-hair-salon.gif'},
+ {id:'tams-home-health-hustle',         title:"Tam's Home Health Hustle",          cover:'covers/tams-home-health-hustle.gif'},
+ {id:'daves-dog-walking-challenge',     title:"Dave's Dog Walking Challenge",      cover:'covers/daves-dog-walking-challenge.gif'},
+ {id:'larrys-laser-engraving',          title:"Larry's Laser Engraving",           cover:'covers/larrys-laser-engraving.gif'},
+ {id:'water-balloon-blast',             title:"Water Balloon Blast",               cover:'covers/water-balloon-blast.gif'},
+ {id:'mama-macgregors-slots',           title:"Mama MacGregor's Slots",            cover:'covers/mama-macgregors-slots.gif'},
+ {id:'mama-macgregors-bingo-hall',      title:"Mama MacGregor's Bingo Hall",       cover:'covers/mama-macgregors-bingo-hall.gif'},
+ {id:'butterfly-net-catch',             title:"Butterfly Net Catch",               cover:'covers/butterfly-net-catch.gif'},
+ {id:'jims-gift-equalizer',             title:"Jim's Gift Equalizer",              cover:'covers/jims-gift-equalizer.gif'},
+ {id:'jimothys-crossing',               title:"Jimothy's Crossing",                cover:'covers/jimothys-crossing.gif'},
+ {id:'kelly-crunch',                    title:"Kelly Crunch",                      cover:'covers/kelly-crunch.gif'},
+];
+GAMES.forEach(g=>{if(!g.url)g.url=B+g.id+'/'});
+const PLAY=g=>g.url+'?sample=0';   // full version (clears any leftover sample flag)
+// Parent PIN: only its SHA-256 hash is stored. To change the PIN: echo -n NEWPIN | sha256sum, paste below.
+const PIN_HASH='db55da3fc3098e9c42311c6013304ff36b19ef73d12ea932054b5ad51df4f49d';
+const PIN_LEN=3, MAX_TRIES=5, LOCKOUT_MS=60000, IDLE_MS=120000, HOLD_MS=2000;
+// ==========================================================================
+const $=i=>document.getElementById(i),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+const LS={get(k,d){try{const v=localStorage.getItem('da_'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('da_'+k,JSON.stringify(v))}catch(e){}}};
+let unlocked=false;
+function ordered(){const o=LS.get('order',[]),ids=GAMES.map(g=>g.id);const seq=o.filter(i=>ids.includes(i)).concat(ids.filter(i=>!o.includes(i)));return seq.map(i=>GAMES.find(g=>g.id===i))}
+function visible(){const h=LS.get('hidden',[]);return ordered().filter(g=>!h.includes(g.id))}
+function renderGrid(){const v=visible();$('grid').innerHTML=v.length?v.map(g=>`<a class="tile" href="${esc(PLAY(g))}" data-id="${esc(g.id)}" draggable="false"><img src="${esc(g.cover)}" width="720" height="378" alt="" loading="lazy" draggable="false"><b>${esc(g.title)}</b></a>`).join(''):'<div class="empty">No games yet. Ask a grown-up! 🙂</div>'}
+// kid safety: no long-press menus / dragging links out
+document.addEventListener('contextmenu',e=>e.preventDefault());
+document.addEventListener('dragstart',e=>e.preventDefault());
+$('av').addEventListener('error',function(){this.onerror=null;this.src='icon-192.png'});
+// ----- long-press to open the PIN pad -----
+let holdT=null;const lb=$('lockBtn');
+function holdStart(e){e.preventDefault();if(unlocked){openParent();return}lb.classList.add('hold');$('holdTip').style.display='block';clearTimeout(holdT);holdT=setTimeout(()=>{holdEnd();openPin()},HOLD_MS)}
+function holdEnd(){clearTimeout(holdT);holdT=null;lb.classList.remove('hold');$('holdTip').style.display='none'}
+lb.addEventListener('pointerdown',holdStart);['pointerup','pointercancel','pointerleave'].forEach(t=>lb.addEventListener(t,holdEnd));
+lb.addEventListener('click',e=>e.preventDefault());
+lb.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!e.repeat)holdStart(e)});lb.addEventListener('keyup',holdEnd);
+// ----- PIN pad -----
+let entry='',mode='parent';const MODES={parent:{len:PIN_LEN,hash:PIN_HASH,key:'fail',title:'Grown-ups only',ask:'Enter the parent PIN'}};const M=()=>MODES[mode];
+$('keys').innerHTML=['1','2','3','4','5','6','7','8','9','C','0','OK'].map(k=>`<button class="key${k==='OK'?' ok':k==='C'?' clr':''}" type="button" data-k="${k}" aria-label="${k==='C'?'Clear':k==='OK'?'Enter':k}">${k==='C'?'Clear':k==='OK'?'✓':k}</button>`).join('');
+function dots(){if($('dots').children.length!==M().len)$('dots').innerHTML='<i></i>'.repeat(M().len);[...$('dots').children].forEach((d,i)=>d.classList.toggle('f',i<entry.length))}
+function lockedOut(){const f=LS.get(M().key,{n:0,until:0});return f.until>Date.now()?f.until:0}
+let loT=null;
+function showLockout(){const u=lockedOut();const ks=[...document.querySelectorAll('.key')];if(!u){ks.forEach(b=>b.disabled=false);clearInterval(loT);loT=null;return false}
+ ks.forEach(b=>b.disabled=true);const tick=()=>{const s=Math.ceil((lockedOut()-Date.now())/1000);if(s<=0){clearInterval(loT);loT=null;ks.forEach(b=>b.disabled=false);msg(M().ask);return}msg('Too many tries. Wait '+s+' s')};tick();if(!loT)loT=setInterval(tick,500);return true}
+function msg(t){$('pinMsg').textContent=t}
+function openPin(m){mode='parent';$('pinTitle').textContent=M().title;entry='';dots();msg(M().ask);$('pinOv').classList.add('on');showLockout()}
+function closePin(){$('pinOv').classList.remove('on');entry='';dots()}
+$('pinX').addEventListener('click',closePin);
+async function sha(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function submit(){if(showLockout())return;const m=M(),ok=entry.length>0&&await sha(entry)===m.hash;entry='';dots();
+ if(ok){LS.set(m.key,{n:0,until:0});closePin();unlocked=true;openParent();return}
+ const f=LS.get(m.key,{n:0,until:0});f.n=(f.n||0)+1;if(f.n>=MAX_TRIES){f.n=0;f.until=Date.now()+LOCKOUT_MS;LS.set(m.key,f);showLockout()}else{LS.set(m.key,f);msg('Wrong PIN. '+(MAX_TRIES-f.n)+' tries left')}}
+$('keys').addEventListener('click',e=>{const b=e.target.closest('.key');if(!b||b.disabled)return;const k=b.dataset.k;
+ if(k==='C'){entry='';dots();return}if(k==='OK'){submit();return}if(entry.length<M().len){entry+=k;dots();if(entry.length===M().len)setTimeout(submit,120)}});
+document.addEventListener('keydown',e=>{if(!$('pinOv').classList.contains('on'))return;if(/^[0-9]$/.test(e.key)){const b=document.querySelector(`.key[data-k="${e.key}"]`);b&&b.click()}else if(e.key==='Enter')submit();else if(e.key==='Escape')closePin();else if(e.key==='Backspace'){entry=entry.slice(0,-1);dots()}});
+// ----- parent mode -----
+let idleT=null,idleTick=null,lastAct=0;
+function bump(){lastAct=Date.now()}
+function openParent(){if(!unlocked)return;$('parent').classList.add('on');renderParent();bump();clearInterval(idleTick);idleTick=setInterval(()=>{const left=IDLE_MS-(Date.now()-lastAct);if(left<=0){relock();return}$('idle').textContent='Locks again in '+Math.ceil(left/1000)+' s if idle'},1000)}
+function relock(){unlocked=false;clearInterval(idleTick);$('parent').classList.remove('on');closePin();renderGrid()}
+['pointerdown','keydown','scroll','input'].forEach(t=>$('parent').addEventListener(t,bump,true));
+$('relock').addEventListener('click',relock);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)relock()});
+addEventListener('pagehide',relock);addEventListener('blur',()=>{if(unlocked&&document.hidden)relock()});
+document.querySelectorAll('.tabs .tab').forEach(t=>t.addEventListener('click',()=>{if(!unlocked)return;document.querySelectorAll('.tabs .tab').forEach(x=>x.classList.toggle('on',x===t));document.querySelectorAll('.sec').forEach(s=>s.classList.toggle('on',s.id===t.dataset.s))}));
+function renderParent(){if(!unlocked)return;const h=LS.get('hidden',[]),o=ordered();
+ $('gList').innerHTML=o.map((g,i)=>`<div class="grow${h.includes(g.id)?' off':''}"><input type="checkbox" data-show="${esc(g.id)}" ${h.includes(g.id)?'':'checked'} aria-label="Show ${esc(g.title)}"><img src="${esc(g.cover)}" alt="" loading="lazy"><span class="nm">${esc(g.title)}</span><button class="btn sm" type="button" data-mv="${i}" data-d="-1" aria-label="Move up" ${i?'':'disabled'}>▲</button><button class="btn sm" type="button" data-mv="${i}" data-d="1" aria-label="Move down" ${i<o.length-1?'':'disabled'}>▼</button></div>`).join('');
+ $('hList').innerHTML=visible().map(g=>`<div class="grow"><img src="${esc(g.cover)}" alt="" loading="lazy"><span class="nm">${esc(g.title)}</span><a class="btn gold" href="${esc(PLAY(g))}" target="_blank" rel="noopener">Open game ↗</a><button class="btn sm" type="button" data-copy="${esc(PLAY(g))}">Copy link</button></div>`).join('');
+ const s=LS.get('sound',{on:false,vol:0.12});$('sndOn').checked=!!s.on;$('sndVol').value=s.vol;
+ $('instArc').style.display=dp?'inline-flex':'none';$('instDone').style.display=standalone()?'inline':'none'}
+$('gList').addEventListener('change',e=>{if(!unlocked)return;const id=e.target.dataset.show;if(!id)return;let h=LS.get('hidden',[]);h=e.target.checked?h.filter(x=>x!==id):[...new Set([...h,id])];LS.set('hidden',h);renderParent();renderGrid()});
+$('gList').addEventListener('click',e=>{if(!unlocked)return;const b=e.target.closest('[data-mv]');if(!b)return;const o=ordered().map(g=>g.id),i=+b.dataset.mv,j=i+(+b.dataset.d);if(j<0||j>=o.length)return;[o[i],o[j]]=[o[j],o[i]];LS.set('order',o);renderParent();renderGrid()});
+$('reset').addEventListener('click',()=>{if(!unlocked)return;LS.set('hidden',[]);LS.set('order',[]);renderParent();renderGrid()});
+$('hList').addEventListener('click',async e=>{if(!unlocked){e.preventDefault();return}const b=e.target.closest('[data-copy]');if(!b)return;let ok=false;try{await navigator.clipboard.writeText(b.dataset.copy);ok=true}catch(_){}b.textContent=ok?'✓ Copied':b.dataset.copy;setTimeout(()=>b.textContent='Copy link',1800)});
+// device steps
+const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+function dev(d){document.querySelectorAll('[data-d]').forEach(b=>{if(b.classList.contains('tab'))b.classList.toggle('on',b.dataset.d===d)});$('stIos').style.display=d==='ios'?'block':'none';$('stAnd').style.display=d==='and'?'block':'none'}
+document.querySelectorAll('.dev .tab').forEach(b=>b.addEventListener('click',()=>dev(b.dataset.d)));dev(isIOS?'ios':'and');
+// arcade install (beforeinstallprompt where supported; only offered inside parent mode)
+let dp=null;const standalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;if(unlocked)renderParent()});
+addEventListener('appinstalled',()=>{dp=null;if(unlocked)renderParent()});
+$('instArc').addEventListener('click',async()=>{if(!unlocked||!dp)return;const e=dp;dp=null;try{e.prompt();await e.userChoice}catch(_){}renderParent()});
+// ----- sound: optional quiet bagpipe skirl (off by default) -----
+let AC=null;
+function skirl(vol){try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const t=AC.currentTime,m=AC.createGain();m.gain.setValueAtTime(0,t);m.gain.linearRampToValueAtTime(vol,t+.25);m.gain.setValueAtTime(vol,t+1.5);m.gain.linearRampToValueAtTime(0,t+2.1);
+ const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=1800;lp.connect(m);m.connect(AC.destination);
+ [[110,.5],[110.6,.4],[220,.35]].forEach(([f,g])=>{const o=AC.createOscillator(),gg=AC.createGain();o.type='sawtooth';o.frequency.value=f;gg.gain.value=g*.5;o.connect(gg);gg.connect(lp);o.start(t);o.stop(t+2.2)});
+ const c=AC.createOscillator(),cg=AC.createGain();c.type='square';cg.gain.value=.22;c.connect(cg);cg.connect(lp);
+ [[880,0],[784,.06],[440,.12],[494,.5],[554,.75],[587,1.0],[659,1.25],[880,1.5]].forEach(([f,d])=>c.frequency.setValueAtTime(f,t+d));c.start(t);c.stop(t+2.2)}catch(e){}}
+$('sndOn').addEventListener('change',e=>{if(!unlocked)return;const s=LS.get('sound',{on:false,vol:.12});s.on=e.target.checked;LS.set('sound',s)});
+$('sndVol').addEventListener('input',e=>{if(!unlocked)return;const s=LS.get('sound',{on:false,vol:.12});s.vol=+e.target.value;LS.set('sound',s)});
+$('sndTest').addEventListener('click',()=>{if(unlocked)skirl(+$('sndVol').value)});
+let played=false;document.addEventListener('pointerdown',()=>{if(played)return;played=true;const s=LS.get('sound',{on:false,vol:.12});if(s.on)skirl(Math.min(.5,s.vol))},{once:true,capture:true});
+renderGrid();
+if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js');
+window.__da={GAMES,visible,get unlocked(){return unlocked},relock,LS};
+</script></body></html>
