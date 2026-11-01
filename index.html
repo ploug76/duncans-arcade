@@ -2,7 +2,7 @@
 <title>Duncan's Arcade</title>
 <meta name="description" content="Duncan's Arcade: a kid-safe family arcade.">
 <meta name="robots" content="noindex">
-<meta property="og:type" content="website"><meta property="og:site_name" content="Duncan's Arcade"><meta property="og:url" content="https://ploug76.github.io/duncans-arcade/"><meta property="og:title" content="Duncan's Arcade"><meta property="og:description" content="Duncan's castle arcade: bagpipes, his white horse and 32 family-friendly games. Tap in and play!"><meta property="og:image" content="https://ploug76.github.io/duncans-arcade/share-v2.jpg"><meta property="og:image:secure_url" content="https://ploug76.github.io/duncans-arcade/share-v2.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Duncan in his kilt with bagpipes and his white horse in a castle arcade, under a DUNCAN'S ARCADE tartan banner"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Duncan's Arcade"><meta name="twitter:description" content="Duncan's castle arcade: bagpipes, his white horse and 32 family-friendly games. Tap in and play!"><meta name="twitter:image" content="https://ploug76.github.io/duncans-arcade/share-v2.jpg"><meta name="twitter:image:alt" content="Duncan with bagpipes and his white horse in a castle arcade">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Duncan's Arcade"><meta property="og:url" content="https://ploug76.github.io/duncans-arcade/"><meta property="og:title" content="Duncan's Arcade"><meta property="og:description" content="Duncan's castle arcade: bagpipes, his white horse and 22 family-friendly games. Tap in and play!"><meta property="og:image" content="https://ploug76.github.io/duncans-arcade/share-v2.jpg"><meta property="og:image:secure_url" content="https://ploug76.github.io/duncans-arcade/share-v2.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Duncan in his kilt with bagpipes and his white horse in a castle arcade, under a DUNCAN'S ARCADE tartan banner"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Duncan's Arcade"><meta name="twitter:description" content="Duncan's castle arcade: bagpipes, his white horse and 22 family-friendly games. Tap in and play!"><meta name="twitter:image" content="https://ploug76.github.io/duncans-arcade/share-v2.jpg"><meta name="twitter:image:alt" content="Duncan with bagpipes and his white horse in a castle arcade">
 <meta name="theme-color" content="#0b0d1c"><link rel="icon" href="icon-192.png"><link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Duncan's Arcade"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
 *{box-sizing:border-box}
@@ -182,42 +182,31 @@ input[type=checkbox]{width:28px;height:28px}input[type=range]{width:200px;height
 // After editing, bump V in sw.js (e.g. v1 -> v2) so phones pick up the change.
 const B='https://ploug76.github.io/';
 const GAMES=[
- {id:'constable-duncan',                title:"Constable Duncan",                  cover:'covers/constable-duncan-v2.jpg'},
- {id:'duncans-mess-up-fess-up-flight',  title:"Duncan's Flight",                   cover:'covers/duncans-mess-up-fess-up-flight.gif'},
- {id:'letter-traffic',                  title:"Letter Traffic",                    cover:'covers/letter-traffic.gif'},
- {id:'kittys-chicken-corral',           title:"Kitty's Chicken Corral",            cover:'covers/kittys-chicken-corral.gif'},
- {id:'suzys-potato-quest',              title:"Suzy's Potato Quest",               cover:'covers/suzys-potato-quest.gif'},
- {id:'hopes-prayer-warrior',            title:"Hope's Prayer Warrior",             cover:'covers/hopes-prayer-warrior.gif'},
- {id:'j-woos-fishing-challenge',        title:"J Woo's Fishing Challenge",         cover:'covers/j-woos-fishing-challenge.gif'},
- {id:'jims-bible-challenge',            title:"Jim's Bible Challenge",             cover:'covers/jims-bible-challenge.gif'},
- {id:'lunar-rover-run',                 title:"Lunar Rover Run",                   cover:'covers/lunar-rover-run.gif'},
- {id:'block-drop',                      title:"Block Drop",                        cover:'covers/block-drop.gif'},
- {id:'quack-attack',                    title:"Quack Attack",                      cover:'covers/quack-attack.gif'},
- {id:'paper-route-peter',               title:"Paper Route Peter",                 cover:'covers/paper-route-peter.gif'},
- {id:'road-agent',                      title:"Road Agent",                        cover:'covers/road-agent.gif'},
- {id:'maze-muncher',                    title:"Maze Muncher",                      cover:'covers/maze-muncher.gif'},
- {id:'cosmic-crash-pinball',            title:"Cosmic Crash Pinball",              cover:'covers/cosmic-crash-pinball.gif'},
- {id:'haunted-midway-pinball',          title:"Haunted Midway Pinball",            cover:'covers/haunted-midway-pinball.gif'},
- {id:'neon-riff-pinball',               title:"Neon Riff Pinball",                 cover:'covers/neon-riff-pinball.gif'},
- {id:'pin-palace-bowling',              title:"Pin Palace Bowling",                cover:'covers/pin-palace-bowling.gif'},
- {id:'lakeside-links-golf',             title:"Lakeside Links Golf",               cover:'covers/lakeside-links-golf.gif'},
- {id:'crazy-course-mini-golf',          title:"Crazy Course Mini Golf",            cover:'covers/crazy-course-mini-golf.gif'},
- {id:'tams-road-to-emmaus',             title:"Tam's Road to Emmaus",              cover:'covers/tams-road-to-emmaus.gif'},
- {id:'tams-heavenly-hair-salon',        title:"Tam's Heavenly Hair Salon",         cover:'covers/tams-heavenly-hair-salon.gif'},
- {id:'tams-home-health-hustle',         title:"Tam's Home Health Hustle",          cover:'covers/tams-home-health-hustle.gif'},
- {id:'daves-dog-walking-challenge',     title:"Dave's Dog Walking Challenge",      cover:'covers/daves-dog-walking-challenge.gif'},
- {id:'larrys-laser-engraving',          title:"Larry's Laser Engraving",           cover:'covers/larrys-laser-engraving.gif'},
- {id:'water-balloon-blast',             title:"Water Balloon Blast",               cover:'covers/water-balloon-blast.gif'},
- {id:'mama-macgregors-slots',           title:"Mama MacGregor's Slots",            cover:'covers/mama-macgregors-slots.gif'},
- {id:'mama-macgregors-bingo-hall',      title:"Mama MacGregor's Bingo Hall",       cover:'covers/mama-macgregors-bingo-hall.gif'},
- {id:'butterfly-net-catch',             title:"Butterfly Net Catch",               cover:'covers/butterfly-net-catch.gif'},
- {id:'jims-gift-equalizer',             title:"Jim's Gift Equalizer",              cover:'covers/jims-gift-equalizer.gif'},
- {id:'jimothys-crossing',               title:"Jimothy's Crossing",                cover:'covers/jimothys-crossing.gif'},
- {id:'kelly-crunch',                    title:"Kelly Crunch",                      cover:'covers/kelly-crunch.gif'},
- {id:'kelly-crunch-vol-2',              title:"Kelly Crunch Vol. 2",               cover:'covers/kelly-crunch-vol-2.gif'},
+ {id:'constable-duncan', title:"Constable Duncan", cover:'covers/constable-duncan-v2.jpg'},
+ {id:'duncans-mess-up-fess-up-flight', title:"Duncan's Flight", cover:'covers/duncans-mess-up-fess-up-flight.gif'},
+ {id:'duncans-mess-up-fess-up-flight-vol-2', title:"Duncan's Flight 2: Wings of Grace", cover:'covers/duncans-mess-up-fess-up-flight-vol-2.jpg'},
+ {id:'duncans-flight-589', title:"Duncan's Flight: Castle Quest", cover:'covers/duncans-flight-589.gif', raw:true},
+ {id:'duncans-gassy-adventure', title:"Duncan's Gassy Adventure", cover:'covers/duncans-gassy-adventure.gif'},
+ {id:'mama-macgregors-slots', title:"Mama MacGregor's Slots", cover:'covers/mama-macgregors-slots.gif'},
+ {id:'mama-macgregors-slots-vol-2', title:"Mama MacGregor's Slots 2", cover:'covers/mama-macgregors-slots-vol-2.jpg'},
+ {id:'mama-macgregors-bingo-hall', title:"Mama MacGregor's Bingo Hall", cover:'covers/mama-macgregors-bingo-hall.gif'},
+ {id:'mama-macgregors-bingo-hall-vol-2', title:"Mama MacGregor's Bingo Hall 2", cover:'covers/mama-macgregors-bingo-hall-vol-2.jpg'},
+ {id:'helenes-treasure-chest', title:"Helene's Treasure Chest", cover:'covers/helenes-treasure-chest.gif'},
+ {id:'helenes-treasure-chest-vol-2', title:"Helene's Treasure Chest 2", cover:'covers/helenes-treasure-chest-vol-2.gif'},
+ {id:'jimothy-timothy-hair-mob', title:"Jimothy Timothy and the Hair Mob", cover:'covers/jimothy-timothy-hair-mob.jpg'},
+ {id:'jimothys-crossing', title:"Jimothy's Crossing", cover:'covers/jimothys-crossing.gif'},
+ {id:'jimothys-crossing-2', title:"Jimothy's Crossing 2", cover:'covers/jimothys-crossing-2.png'},
+ {id:'jimothys-crossing-16bit', title:"Jimothy's Crossing 16-Bit", cover:'covers/jimothys-crossing-16bit.png'},
+ {id:'jimothys-crossing-32bit', title:"Jimothy's Crossing: 32-Bit", cover:'covers/jimothys-crossing-32bit.jpg', url:'https://ploug76.github.io/jimothys-crossing/?mode=32bit'},
+ {id:'jimothys-crossing-64bit', title:"Jimothy's Crossing: 64-Bit", cover:'covers/jimothys-crossing-64bit.jpg', url:'https://ploug76.github.io/jimothys-crossing/?mode=64bit'},
+ {id:'jimothys-crossing-2000s', title:"Jimothy's Crossing: 2000s", cover:'covers/jimothys-crossing-2000s.jpg', url:'https://ploug76.github.io/jimothys-crossing/?mode=2000s'},
+ {id:'jimothys-crossing-modern', title:"Jimothy's Crossing: Modern", cover:'covers/jimothys-crossing-modern.jpg', url:'https://ploug76.github.io/jimothys-crossing/?mode=modern'},
+ {id:'jimothys-crossing-hyperreal', title:"Jimothy's Crossing: Hyperreal", cover:'covers/jimothys-crossing-hyperreal.jpg', url:'https://ploug76.github.io/jimothys-crossing/?mode=hyperreal'},
+ {id:'hopes-prayer-warrior', title:"Hope's Prayer Warrior", cover:'covers/hopes-prayer-warrior.gif'},
+ {id:'j-woos-fishing-challenge', title:"J Woo's Fishing Challenge", cover:'covers/j-woos-fishing-challenge.gif'},
 ];
 GAMES.forEach(g=>{if(!g.url)g.url=B+g.id+'/'});
-const PLAY=g=>g.url+'?sample=0';   // full version (clears any leftover sample flag)
+const PLAY=g=>g.raw?g.url:g.url+(g.url.includes('?')?'&':'?')+'sample=0';   // full version (clears any leftover sample flag)
 // Parent PIN: only its SHA-256 hash is stored. To change the PIN: echo -n NEWPIN | sha256sum, paste below.
 const PIN_HASH='db55da3fc3098e9c42311c6013304ff36b19ef73d12ea932054b5ad51df4f49d';
 const PIN_LEN=3, MAX_TRIES=5, LOCKOUT_MS=60000, IDLE_MS=120000, HOLD_MS=2000;
